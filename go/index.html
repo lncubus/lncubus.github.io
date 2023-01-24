@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификат</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <p>
+        <label for="fullname">Полное имя студента</label>
+        <input id="fullname" type="text" value="Профессор Кислых Щей" autofocus>
+    </p>
+    <p>
+        <label for="background">Цвет фона</label>
+        <input id="background" type="color" value="#faf4e7">
+        <label for="foreground">Цвет текста</label>
+        <input id="foreground" type="color" value="#4e1823">
+    </p>
+    <p>
+        <label for="paths">Дисциплина</label>
+        <select id="paths">
+            <option value="TXT">Тексты</option>
+            <option value="ИО">Информационные ожидания</option>
+            <option value="S">Руководство</option>
+        </select>
+    </p>
+    <p>
+        <label for="typeofdoc">Тип документа</label>
+        <input id="typeofdoc" list="typesofdoc" type="text" value="сертификат">
+        <datalist id="typesofdoc">
+          <option value="сертификат">
+          <option value="сертификат с отличием">
+          <option value="зачетка">
+        </datalist>
+        <button type="button" id="cleartypeofdoc"> X </button>
+    </p>
+    <p>
+        <label for="numberofdoc">Номер документа</label>
+        <input id="numberofdoc" type="text" value="MIO22021020">
+    </p>
+    <p>
+        <label for="animal">Животное</label>
+        <select id="animal">
+        <option value="anteater">Муравьед</option>
+        <option value="dog">Собака</option>
+        <option value="cheburashka">Чебурашка</option>
+        </select>
+    </p>
+    <p>
+        <label for="contentdescription">Краткое содержание</label>
+        <textarea id="contentdescription" height="25%">грыз
+гранит
+дизайн
+задачника
+eduHund.com
+</textarea>
+    </p>
+    <p>
+        <button id="plus">+</button> <button id="minus">-</button>
+        <table id='disciplines' width="50%">
+        <style>
+            table, th, td {
+                border: 1px solid;
+                text-align: center;
+                border-collapse: collapse;
+            }
+        </style>
+        <thead contenteditable="false">
+            <tr><th>Дисциплина</th><th>Баллы</th></tr>
+        </thead>
+        <tbody contenteditable="true">
+          <tr><td>озадачивание подчиненных</td><td>98</td></tr>
+          <tr><td>работа с конкретным сотрудником</td><td>100</td></tr>
+          <tr><td>как стать начальником</td><td>82</td></tr>
+          <tr><td>принуждение к простоте</td><td>87</td></tr>
+          <tr><td>внедрение серебряных пуль</td><td>99</td></tr>
+          <tr><td>культура переписки</td><td>100</td></tr>
+          <tr><td>деньги</td><td>87</td></tr>
+          <tr><td>навыки продалбывания задачи</td><td>95</td></tr>
+          <tr><td>лайфхаки</td><td>93</td></tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+        <button id="submit" type="submit">Нарисовать</button><br>
+    </p>
+    <script src="index.js"></script>
+</body>
+</html>

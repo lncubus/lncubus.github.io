@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="596" height="843" viewBox="0 0 596 843" fill="none" version="1.1" id="svg"
+  xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <style>
+    tspan {
+      fill: ${foreground};
+    }
+  </style>
+  <defs>
+    <image width="20%" height="8%" id="signature" href="images/signature.png" opacity="0.7" transform="rotate(-21)"/>
+    <g id="TXT" fill="${foreground}" fill-opacity="0.4">
+      <path d="M-102.032 64.1364V0.5H150.809V64.1364H63.3092V291.409H-14.5317V64.1364H-102.032Z"/>
+      <path d="M249.191 0.5L296.919 85.1591H299.191L347.487 0.5H435.555L348.623 145.955L438.964 291.409H348.623L299.191 205.045H296.919L247.487 291.409H157.714L246.919 145.955L160.555 0.5H249.191Z"/>
+      <path d="M445.656 64.1364V0.5H698.497V64.1364H610.997V291.409H533.156V64.1364H445.656Z"/>
+      <use href="#signature" x="66%" y="17%" />
+    </g>
+    <g id="ИО" fill="${foreground}" fill-opacity="0.4">
+      <path d="M-36.4683 -68.6362H62.2533V121.705H65.0942L194.356 -68.6362H278.162V295H179.441V103.949H177.31L45.9181 295H-36.4683V-68.6362Z"/>
+      <path d="M672.133 113.182C672.133 153.665 664.261 187.815 648.518 215.633C632.774 243.332 611.527 264.342 584.775 278.665C558.023 292.87 528.193 299.972 495.286 299.972C462.142 299.972 432.194 292.811 405.442 278.488C378.809 264.046 357.62 242.976 341.877 215.278C326.252 187.46 318.439 153.429 318.439 113.182C318.439 72.6994 326.252 38.6085 341.877 10.9096C357.62 -16.9076 378.809 -37.9185 405.442 -52.123C432.194 -66.446 462.142 -73.6074 495.286 -73.6074C528.193 -73.6074 558.023 -66.446 584.775 -52.123C611.527 -37.9185 632.774 -16.9076 648.518 10.9096C664.261 38.6085 672.133 72.6994 672.133 113.182ZM570.57 113.182C570.57 91.4021 567.67 73.0545 561.87 58.1398C556.188 43.1066 547.724 31.743 536.479 24.0488C525.352 16.2363 511.621 12.3301 495.286 12.3301C478.951 12.3301 465.161 16.2363 453.915 24.0488C442.788 31.743 434.325 43.1066 428.525 58.1398C422.843 73.0545 420.002 91.4021 420.002 113.182C420.002 134.963 422.843 153.369 428.525 168.403C434.325 183.317 442.788 194.681 453.915 202.493C465.161 210.188 478.951 214.035 495.286 214.035C511.621 214.035 525.352 210.188 536.479 202.493C547.724 194.681 556.188 183.317 561.87 168.403C567.67 153.369 570.57 134.963 570.57 113.182Z"/>
+      <use href="#signature" x="72%" y="11%"/>
+    </g>
+    <g id="S" fill="${foreground}" fill-opacity="0.4">
+      <path d="M178.795 -1.64524C178.795 28.8617 152.021 50.1189 127.219 67.882C126.895 68.1145 126.573 68.3497 126.255 68.5875C113.681 77.8412 107.394 91.9321 107.394 110.86C107.394 122.918 109.752 132.803 114.467 140.514C118.957 148.085 125.132 153.693 132.991 157.339C140.849 160.984 149.831 162.877 159.935 163.017C168.242 163.298 175.764 162.386 182.5 160.283C189.012 158.04 194.962 154.535 200.351 149.768C205.515 145.001 210.23 138.902 214.496 131.471C218.762 124.04 222.579 115.206 225.947 104.971L238.072 69.6391C246.155 45.8038 256.821 25.4037 270.068 8.43859C283.315 -8.5265 298.921 -22.407 316.883 -33.203C334.621 -43.999 354.605 -51.9207 376.833 -56.9681C399.062 -62.1558 423.312 -64.8197 449.582 -64.96C494.938 -64.8197 533.333 -57.7393 564.767 -43.7185C596.202 -29.6978 620.115 -9.64815 636.506 16.4304C652.897 42.3688 661.092 73.5649 661.092 110.019C661.092 147.454 652.223 180.122 634.485 208.024C616.747 235.785 589.466 257.377 552.643 272.799C528.469 282.771 499.897 289.52 466.929 293.045C435.917 296.36 410.513 270.545 410.513 239.357C410.513 209.022 435.658 186.507 463.728 175.005C478.098 169.116 488.988 160.844 496.397 150.188C503.807 139.392 507.512 126.563 507.512 111.701C507.512 99.2228 505.042 88.7774 500.102 80.3649C495.162 71.9525 488.314 65.5731 479.557 61.2266C470.8 56.8802 460.809 54.6369 449.582 54.4967C439.029 54.6369 429.823 56.8101 421.965 61.0163C413.881 65.0823 406.696 71.8123 400.409 81.2062C393.898 90.6001 387.836 103.289 382.222 119.272L367.403 162.176C354.156 200.312 332.039 230.387 301.054 252.399C269.844 274.272 227.295 285.138 173.407 284.998C129.623 285.138 91.3399 277.847 58.5581 263.125C25.5517 248.263 -0.157295 227.723 -18.569 201.504C-36.9807 175.145 -46.1865 144.93 -46.1865 110.86C-46.1865 76.0886 -36.8684 46.0142 -18.2322 20.6366C0.404057 -4.74091 26.6744 -24.2998 60.5789 -38.0401C79.1698 -45.702 99.5053 -51.2707 121.585 -54.746C152.887 -59.6727 178.795 -33.3319 178.795 -1.64524Z"/>
+      <use href="#signature" x="63%" y="13%"/>
+    </g>
+  </defs>
+  <g>
+    <rect id="background" width="596" height="843" fill="${background}"/>
+    <use href="#${paths}"/>
+    <text id="document-line" fill="${foreground}"
+      x="50%" y="40%"
+      fill-opacity="0.3" font-family="Inter" font-size="32"
+      letter-spacing="0em" text-anchor="middle">
+      <tspan>${typeofdoc}</tspan>
+      <tspan>•</tspan>
+      <tspan>${typeofdoc}</tspan>
+      <tspan>•</tspan>
+      <tspan fill-opacity="0.8">${typeofdoc}</tspan>
+      <tspan>•</tspan>
+      <tspan>${typeofdoc}</tspan>
+      <tspan>•</tspan>
+      <tspan>${typeofdoc}</tspan>
+      <tspan>•</tspan>
+      <tspan>${typeofdoc}</tspan>
+      <tspan>•</tspan>
+      <tspan>${typeofdoc}</tspan>
+    </text>
+    <text id="number-line" fill="${foreground}"
+      x="50%" y="44%"
+      fill-opacity="0.3" font-family="Inter" font-size="14"
+      letter-spacing="0em" text-anchor="middle">
+      <tspan>&nbsp;№&nbsp;${numberofdoc}&nbsp;</tspan>
+      <tspan>&nbsp;№&nbsp;${numberofdoc}&nbsp;</tspan>
+      <tspan fill-opacity="0.8">&nbsp;№&nbsp;${numberofdoc}&nbsp;</tspan>
+      <tspan>&nbsp;№&nbsp;${numberofdoc}&nbsp;</tspan>
+      <tspan>&nbsp;№&nbsp;${numberofdoc}&nbsp;</tspan>
+      <tspan>&nbsp;№&nbsp;${numberofdoc}&nbsp;</tspan>
+    </text>
+    <text id="fullname-line" fill="${foreground}"
+      x="50%" y="49%"
+      fill-opacity="0.3" font-family="Inter" font-size="32"
+      letter-spacing="0em" text-anchor="middle">
+      <tspan>${fullname}</tspan>
+      <tspan>•</tspan>
+      <tspan>${fullname}</tspan>
+      <tspan>•</tspan>
+      <tspan>${fullname}</tspan>
+      <tspan>•</tspan>
+      <tspan fill-opacity="0.8">${fullname}</tspan>
+      <tspan>•</tspan>
+      <tspan>${fullname}</tspan>
+      <tspan>•</tspan>
+      <tspan>${fullname}</tspan>
+      <tspan>•</tspan>
+      <tspan>${fullname}</tspan>
+    </text>
+      <text 
+        id="content-description" fill="${foreground}"
+        fill-opacity="0.7" font-family="Inter" font-size="14"
+        x="15%" y="55%" width="10%" letter-spacing="0em" text-anchor="end">
+        <tspan x="15%" dy="1.4em" width="10%">${...contentdescription}</tspan>
+      </text>
+      <text id="performance-marks" fill="${foreground}"
+        fill-opacity="0.7" font-family="Inter" font-size="14"
+        x="30%" y="60%" width="70%" letter-spacing="0em">
+      <!--performance-->
+        <tspan x="30%" dy="1.4em" text-anchor="start">{key}</tspan>
+        <tspan x="95%" text-anchor="end">{value}&nbsp;%</tspan>
+      <!--performance-->
+      </text>
+    <image id="animal" opacity="0.6" x="-10%" y="75%" width="35%" height="35%"
+      preserveAspectRatio="xMaxYMin meet" href="images/${animal}.png"/>
+  </g>
+</svg>
