@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="596" height="843" viewBox="0 0 596 843" fill="none" version="1.1" id="svg"
   xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-  <style>
-    tspan {
-      fill: ${foreground};
-    }
-  </style>
   <defs>
     <image width="20%" height="8%" id="signature" href="images/signature.png" opacity="0.7" transform="rotate(-21)"/>
     <g id="TXT" fill="${foreground}" fill-opacity="0.4">
@@ -29,13 +24,12 @@
     <use href="#${paths}"/>
     <text id="document-line" fill="${foreground}"
       x="50%" y="40%"
-      fill-opacity="0.3" font-family="Inter" font-size="32"
-      letter-spacing="0em" text-anchor="middle">
+      fill-opacity="0.3" font-family="Inter" font-size="32" text-anchor="middle">
       <tspan>${typeofdoc}</tspan>
       <tspan>•</tspan>
       <tspan>${typeofdoc}</tspan>
       <tspan>•</tspan>
-      <tspan fill-opacity="0.8">${typeofdoc}</tspan>
+      <tspan fill="${foreground2}" fill-opacity="0.8">${typeofdoc}</tspan>
       <tspan>•</tspan>
       <tspan>${typeofdoc}</tspan>
       <tspan>•</tspan>
@@ -58,15 +52,14 @@
     </text>
     <text id="fullname-line" fill="${foreground}"
       x="50%" y="49%"
-      fill-opacity="0.3" font-family="Inter" font-size="32"
-      letter-spacing="0em" text-anchor="middle">
+      fill-opacity="0.3" font-family="Inter" font-size="32" text-anchor="middle">
       <tspan>${fullname}</tspan>
       <tspan>•</tspan>
       <tspan>${fullname}</tspan>
       <tspan>•</tspan>
       <tspan>${fullname}</tspan>
       <tspan>•</tspan>
-      <tspan fill-opacity="0.8">${fullname}</tspan>
+      <tspan fill="${foreground2}" fill-opacity="0.8">${fullname}</tspan>
       <tspan>•</tspan>
       <tspan>${fullname}</tspan>
       <tspan>•</tspan>
@@ -74,20 +67,27 @@
       <tspan>•</tspan>
       <tspan>${fullname}</tspan>
     </text>
-      <text 
-        id="content-description" fill="${foreground}"
-        fill-opacity="0.7" font-family="Inter" font-size="14"
-        x="15%" y="55%" width="10%" letter-spacing="0em" text-anchor="end">
-        <tspan x="15%" dy="1.4em" width="10%">${...contentdescription}</tspan>
-      </text>
-      <text id="performance-marks" fill="${foreground}"
-        fill-opacity="0.7" font-family="Inter" font-size="14"
-        x="30%" y="60%" width="70%" letter-spacing="0em">
-      <!--performance-->
-        <tspan x="30%" dy="1.4em" text-anchor="start">{key}</tspan>
-        <tspan x="95%" text-anchor="end">{value}&nbsp;%</tspan>
-      <!--performance-->
-      </text>
+    <text
+      id="content-description" fill="${foreground}"
+      fill-opacity="0.7" font-family="Inter" font-size="14"
+      x="15%" y="55%" width="10%" text-anchor="end">
+      <tspan x="15%" dy="1.4em" width="10%">${...contentdescription}</tspan>
+    </text>
+    <text id="performance-marks" fill="${foreground2}" font-size="150">
+      <tspan x="44%" y="65%">#{performance.total}%</tspan>
+    </text>
+    <text fill="${foreground}" fill-opacity="0.4" font-size="14">
+      <tspan x="55%" y="70%">от максимального балла</tspan>
+    </text>
+    <text id="performance-marks" fill="${foreground}"
+      fill-opacity="0.7" font-family="Inter" font-size="14"
+      x="30%" y="72%" width="70%">
+    <!--performance-->
+      <tspan x="30%" dy="1.4em" text-anchor="start">{key}</tspan>
+      <tspan x="95%" text-anchor="end">{value}&nbsp;%</tspan>
+    <!--performance-->
+    </text>
+    <text fill="${foreground}" fill-opacity="0.7" font-size="10"><tspan x="192.354" y="826.7">Для проверки подлинности сертификата напишите на ohreally@eduhund.com</tspan></text>
     <image id="animal" opacity="0.6" x="-10%" y="75%" width="35%" height="35%"
       preserveAspectRatio="xMaxYMin meet" href="images/${animal}.png"/>
   </g>

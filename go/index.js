@@ -107,14 +107,23 @@ document.getElementById("submit").onclick = function () {
             suffixIndex += bracket.length
             var template = svg.slice(prefixIndex + bracket.length, suffixIndex - bracket.length)
             var content = []
+            var total = 0, count = 0
             for (const [k, v] of disciplines) {
                 var line = template.replace('{key}', k).replace('{value}', v)
+                total += Number(v)
+                count++
                 content.push(line)
             }
             content = content.join('\n')
             svg = svg.slice(0, prefixIndex) + content + svg.slice(suffixIndex)
+            if (count > 0)
+                total = Math.round(total/count)
+            if (total < 0)
+                total = 0
+            if (total > 100)
+                total = 100
+            svg = svg.replaceAll('#{performance.total}', total)
         }
-        console.log(svg)
         div.innerHTML = svg
         document.body.insertBefore(div, null)
     }
