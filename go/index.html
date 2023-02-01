@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сертификат</title>
     <link rel="stylesheet" href="style.css"/>
@@ -14,18 +13,34 @@
     </p>
     <p>
         <label for="background">Цвет фона</label>
-        <input id="background" type="color" value="#faf4e7">
+        <input id="background" type="color" value="#e8eddf">
         <label for="foreground">Цвет текста</label>
-        <input id="foreground" type="color" value="#4e1823">
-        <input id="foreground2" type="color" value="#0071B3">
+        <input id="foreground" type="color" value="#083d77">
+        <input id="foreground2" type="color" value="#4a051c">
+        <label for="header">Цвет заголовка</label>
+        <input id="header" type="color" value="#2a9d8f">
     </p>
     <p>
         <label for="paths">Дисциплина</label>
         <select id="paths">
-            <option value="TXT">Тексты</option>
+            <option value="TXT">Несекретные секреты текстов</option>
             <option value="ИО">Информационные ожидания</option>
-            <option value="S">Руководство</option>
+            <option value="S">Hard skills руководителя</option>
         </select>
+    </p>
+    <p>
+        <label for="fullcourse">Полное название дисциплины</label><br>
+        <small>
+            <label for="cutlength">Максимальная длина строки
+                <input id="cutlength" type="number" min="5" max="11" value="7" size="1">
+                символов
+            </label><br>
+        </small>
+        <textarea id="fullcourse" rows="7">Несекр
+етные се
+креты те
+кстов
+</textarea>
     </p>
     <p>
         <label for="typeofdoc">Тип документа</label>
@@ -42,16 +57,12 @@
         <input id="numberofdoc" type="text" value="MIO22021020">
     </p>
     <p>
-        <label for="animal">Животное</label>
-        <select id="animal">
-        <option value="anteater">Муравьед</option>
-        <option value="dog">Собака</option>
-        <option value="cheburashka">Чебурашка</option>
-        </select>
+        <label for="dateofdoc">Дата документа</label>
+        <input id="dateofdoc" type="date">
     </p>
     <p>
-        <label for="contentdescription">Краткое содержание</label>
-        <textarea id="contentdescription" height="25%">грыз
+        <label for="contentdescription">Краткое содержание</label><br>
+        <textarea id="contentdescription" rows="7">грыз
 гранит
 дизайн
 задачника
@@ -83,6 +94,14 @@ eduHund.com
           <tr><td>лайфхаки</td><td>93</td></tr>
         </tbody>
       </table>
+    </p>
+    <p>
+        <label for="animal">Животное</label>
+        <select id="animal">
+        <option value="anteater">Муравьед</option>
+        <option value="dog">Собака</option>
+        <option value="cheburashka">Чебурашка</option>
+        </select>
     </p>
     <p>
         <button id="submit" type="submit">Нарисовать</button><br>
