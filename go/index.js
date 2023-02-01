@@ -273,7 +273,7 @@ _get("submit").onclick = function () {
         var suffixIndex = svg.indexOf(bracket, prefixIndex + bracket.length)
         if (prefixIndex >= 0 && suffixIndex >= 0) {
             suffixIndex += bracket.length
-            var template = svg.slice(prefixIndex + bracket.length, suffixIndex - bracket.length)
+            var template = svg.slice(prefixIndex + bracket.length, suffixIndex - bracket.length).trim()
             var content = []
             var total = 0, count = 0
             for (const [k, v] of disciplines) {
