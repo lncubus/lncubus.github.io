@@ -14,7 +14,9 @@ var _escape = function(s) {
         '&': '&amp;',
         '\'': '&#x27;',
         '<': '&lt;',
-        '>': '&gt;'
+        '>': '&gt;',
+        '{': '&lcub;',
+        '}': '&rcub;',
     }
     for (var ch in escapeMap)
         s = s.replaceAll(ch, escapeMap[ch])
