@@ -2,13 +2,13 @@
  * @param {string} id
  * @returns {HTMLElement}
  */
-var _get = (id) => document.getElementById(id)
+const _get = (id) => document.getElementById(id)
 
 /**
  * @param {string} s
  * @returns {string}
  */
-var _escape = function(s) {
+const _escape = function(s) {
     const escapeMap = {
         '"': '&quot;',
         '&': '&amp;',
@@ -27,9 +27,9 @@ var _escape = function(s) {
  * @param {string} identifier
  * @returns {string}
  */
-var _getValue = function(identifier) {
+const _getValue = function(identifier) {
     var value
-    const multiline = identifier.startsWith("...")
+    const multiline = identifier.startsWith('...')
     var elem = _get(multiline ? identifier.slice(3) : identifier)
     if (elem == null)
         return null
@@ -66,7 +66,7 @@ Z - other - все остальное
  * @param {number} len
  * @returns {string}
  */
-var _build_pattern = function(str, len) {
+const _build_pattern = function(str, len) {
     const vowels = new Set('аеёиоуыэюя')
     const consonants = new Set('бвгджзклмнпрстфхцчшщ')
     const weirdlings = new Set('йъь')
@@ -95,7 +95,7 @@ const _NOTFOUND = 0
  * @param {number} len
  * @returns {number}
  */
-var _find_hyphen_position = function(str, len) {
+const _find_hyphen_position = function(str, len) {
     if (str == null || str.length <= len)
         return _FINALPART
     const pattern = _build_pattern(str, len)
@@ -138,7 +138,7 @@ var _find_hyphen_position = function(str, len) {
  * @param {number} len
  * @returns {string}
  */
-_hyphenate = function(str, len) {
+const _hyphenate = function(str, len) {
     result = ''
     while (str) {
         var hyphen = _find_hyphen_position(str, len)
@@ -164,13 +164,13 @@ _hyphenate = function(str, len) {
  * @param {string} text
  * @param {number} len
  */
-var _update_text_with_hypenation = function(id, text, len) {
+const _update_text_with_hypenation = function(id, text, len) {
     var textarea = _get(id)
     text = _hyphenate(text, len)
     textarea.value = text
 }
 
-var _update_course_description = function() {
+const _update_course_description = function() {
     var select = _get('paths')
     var len = Number(_getValue('cutlength'))
     var line = select.options[select.selectedIndex].innerText.trim()
@@ -183,7 +183,7 @@ _get('cleartypeofdoc').onclick = function() {
 
 _get('plus').onclick = function() {
     var row = _get('disciplines').insertRow()
-    row.innerHTML = "<td>неизвестная задача</td><td>0</td>"
+    row.innerHTML = '<td>неизвестная задача</td><td>0</td>'
 }
 
 _get('minus').onclick = function() {
@@ -192,6 +192,51 @@ _get('minus').onclick = function() {
     if (last <= 0)
         return
     table.deleteRow(last)
+}
+
+const _blob_to_base64 = async (blob) => await _internal_blob_to_base64(blob)
+
+const _internal_blob_to_base64 = blob => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(blob)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = error => reject(error)
+  })
+
+/**
+ * @param {SVGElement} svg
+ * @returns
+ */
+var _processImages = async function(svg) {
+    var images = svg.getElementsByTagName('image')
+    for(var image of images) {
+        const source = image.href.baseVal
+        if (source.startsWith('data:'))
+            continue
+        const response = await fetch(source)
+        const data = await response.blob()
+        const base64 = await _blob_to_base64(data)
+        image.href.baseVal = base64
+    }
+}
+
+_get('svg_dl').onclick = async function() {
+    var div = _get('idsvg')
+    if (div == null || div.innerHTML == null)
+        return
+    var content = div.getElementsByTagName('svg')
+    if (content == null || content.length == 0)
+        return
+    content = content[0]
+    await _processImages(content)
+    content = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + content.outerHTML
+    var ahref = document.createElement('a')
+    ahref.href = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(content)
+    ahref.download = 'certificate.svg'
+    ahref.style.display = 'none'
+    document.body.appendChild(ahref)
+    ahref.click()
+    document.body.removeChild(ahref)
 }
 
 _get('paths').onchange = _update_course_description
@@ -220,7 +265,7 @@ _loadFonts(_get('fontfamily'), 'Inter')
  * @param {Map} values
  * @returns {string}
  */
-var _prcoessDisciplines = function(svg, values) {
+var _processDisciplines = function(svg, values) {
     var table = _get('disciplines')
     var bracket = "<!--performance-->"
     disciplines = new Map()
@@ -316,26 +361,22 @@ var _buildSvg = function(svg) {
     date.reverse()
     date = date.join(' // ')
     values.set('document.date', date)
-    svg = _prcoessDisciplines(svg, values)
+    svg = _processDisciplines(svg, values)
     svg = _processValues(svg, values)
     return svg
 }
 
-_get("submit").onclick = function () {
+_get("submit").onclick = async function (event) {
     var old = _get("idsvg")
     if(old !== null)
         old.remove()
-
-    var ajax = new XMLHttpRequest()
-    ajax.open("GET", "template.svg", true)
-    ajax.onload = function(e) {
-        var div = document.createElement("div")
-        div.id = "idsvg"
-        var svg = ajax.responseText
-        svg = _buildSvg(svg)
-        div.innerHTML = svg
-        document.body.insertBefore(div, null)
-        div.scrollIntoView()
-    }
-    ajax.send()
+    const response = await fetch('template.svg')
+    var svg = await response.text()
+    var div = document.createElement("div")
+    div.id = "idsvg"
+    svg = _buildSvg(svg)
+    div.innerHTML = svg
+    document.body.insertBefore(div, null)
+    event.target.scrollIntoView()
+    _get('svg_dl').disabled=false
 }
