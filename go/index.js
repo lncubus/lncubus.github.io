@@ -196,110 +196,147 @@ _get('minus').onclick = function() {
 
 _get('paths').onchange = _update_course_description
 _get('cutlength').onchange = _update_course_description
-
 _get('dateofdoc').valueAsDate = new Date()
 
+/**
+ * @param {HTMLSelectElement} select
+ */
+var _loadFonts = function(select, selected) {
+    const fonts = ['Arial', 'Bookman', 'Brush Script MT', 'Century Gothic', 'Copperplate Gothic Light', 'Garamond',
+    'Goudy Old Style', 'Helvetica', 'Impact', 'Ink Free', 'Inter', 'Lucida Handwriting', 'MV Boli',
+    'Papyrus', 'Segoe Script', 'Verdana']
+    for (var font of fonts) {
+        var option = document.createElement('option')
+        option.style.fontFamily = font
+        option.value = font
+        option.text = font
+        option.selected = font == selected
+        select.options.add(option)
+    }
+}
+_loadFonts(_get('fontfamily'), 'Inter')
+
+/**
+ * @param {string} svg
+ * @param {Map} values
+ * @returns {string}
+ */
+var _prcoessDisciplines = function(svg, values) {
+    var table = _get('disciplines')
+    var bracket = "<!--performance-->"
+    disciplines = new Map()
+    for (const row of table.rows)
+        if (row.cells.length == 2 && row.innerHTML.includes('<td>'))
+            disciplines.set(row.cells[0].innerText, row.cells[1].innerText)
+    var prefixIndex = svg.indexOf(bracket)
+    var suffixIndex = svg.indexOf(bracket, prefixIndex + bracket.length)
+    if (prefixIndex >= 0 && suffixIndex >= 0) {
+        suffixIndex += bracket.length
+        var template = svg.slice(prefixIndex + bracket.length, suffixIndex - bracket.length).trim()
+        var content = []
+        var total = 0, count = 0
+        for (const [k, v] of disciplines) {
+            var line = template.replace('{key}', k).replace('{value}', v)
+            total += Number(v)
+            count++
+            content.push(line)
+        }
+        content = content.join('\n')
+        svg = svg.slice(0, prefixIndex) + content + svg.slice(suffixIndex)
+        if (count > 0)
+            total = Math.round(total/count)
+        if (total < 0)
+            total = 0
+        if (total > 100)
+            total = 100
+        values.set('performance.total', total)
+    }
+    return svg
+}
+
+/**
+ * @param {string} svg
+ * @param {Map} values
+ * @returns {string}
+ */
+var _processValues = function(svg, values) {
+    const prefix = "{{"
+    const suffix = "}}"
+    var len = svg.length
+    if (len == 0) {
+        return
+    }
+    var startIndex = 0
+    while (startIndex < svg.length) {
+        var prefixIndex = svg.indexOf(prefix, startIndex)
+        if (prefixIndex < 0)
+            break
+        startIndex = prefixIndex + prefix.length
+        var suffixIndex = svg.indexOf(suffix, startIndex)
+        if (suffixIndex < 0)
+            break
+        var identifier = svg.slice(startIndex, suffixIndex)
+        startIndex = suffixIndex + suffix.length
+        if (!values.has(identifier)) {
+            var elementValue = _getValue(identifier)
+            values.set(identifier, elementValue)
+        }
+    }
+    for (const [identifier, elementValue] of values) {
+        const multiline = identifier.startsWith("...")
+        if (!multiline) {
+            svg = svg.replaceAll(prefix + identifier + suffix, elementValue)
+        }
+        else {
+            var identifierIndex = svg.length;
+            while (identifierIndex >= 0) {
+                identifierIndex = svg.lastIndexOf(identifier)
+                if (identifierIndex < 0)
+                    break
+                var openTagIndex = svg.lastIndexOf("<", identifierIndex)
+                var closeTagIndex = svg.indexOf(">", identifierIndex)
+                if (openTagIndex < 0 || closeTagIndex < 0)
+                    break
+                var tag = svg.slice(openTagIndex, closeTagIndex + 1)
+                var content = elementValue == null ? [] :
+                    elementValue.map(v => tag.replaceAll(prefix + identifier + suffix, v))
+                content = content.join('\n')
+                svg = svg.replaceAll(tag, content)
+            }
+        }
+    }
+    return svg
+}
+
+/**
+ * @param {string} svg
+ */
+var _buildSvg = function(svg) {
+    var values = new Map()
+    var date = _getValue('dateofdoc').split('-')
+    date.reverse()
+    date = date.join(' // ')
+    values.set('document.date', date)
+    svg = _prcoessDisciplines(svg, values)
+    svg = _processValues(svg, values)
+    return svg
+}
+
 _get("submit").onclick = function () {
+    var old = _get("idsvg")
+    if(old !== null)
+        old.remove()
+
     var ajax = new XMLHttpRequest()
     ajax.open("GET", "template.svg", true)
     ajax.onload = function(e) {
         var div = document.createElement("div")
         div.id = "idsvg"
         var svg = ajax.responseText
-        var processAll = function() {
-            const prefix = "${"
-            const suffix = "}"
-            var len = svg.length
-            if (len == 0) {
-                return
-            }
-            var startIndex = 0
-            var values = new Map()
-            while (startIndex < svg.length) {
-                var prefixIndex = svg.indexOf(prefix, startIndex)
-                if (prefixIndex < 0)
-                    break
-                startIndex = prefixIndex + prefix.length
-                var suffixIndex = svg.indexOf(suffix, startIndex)
-                if (suffixIndex < 0)
-                    break
-                var identifier = svg.slice(startIndex, suffixIndex)
-                startIndex = suffixIndex + suffix.length
-                if (!values.has(identifier)) {
-                    var elementValue = _getValue(identifier)
-                    values.set(identifier, elementValue)
-                }
-            }
-            for (const [identifier, elementValue] of values) {
-                const multiline = identifier.startsWith("...")
-                if (!multiline) {
-                    svg = svg.replaceAll(prefix + identifier + suffix, elementValue)
-                }
-                else {
-                    var identifierIndex = svg.length;
-                    while (identifierIndex >= 0) {
-                        identifierIndex = svg.lastIndexOf(identifier)
-                        if (identifierIndex < 0)
-                            break
-                        var openTagIndex = svg.lastIndexOf("<", identifierIndex)
-                        var closeTagIndex = svg.indexOf(">", identifierIndex)
-                        if (openTagIndex < 0 || closeTagIndex < 0)
-                            break
-                        var tag = svg.slice(openTagIndex, closeTagIndex + 1)
-                        var content = elementValue == null ? [] :
-                            elementValue.map(v => tag.replaceAll(prefix + identifier + suffix, v))
-                        content = content.join('\n')
-                        svg = svg.replaceAll(tag, content)
-                    }
-                }
-            }
-        }
-        processAll()
-
-        var date = _getValue('dateofdoc').split('-')
-        date.reverse()
-        date = date.join(' // ')
-        svg = svg.replaceAll('#{dateofdoc}', date)
-
-        var paths = _get('paths')
-        var course = paths.options[paths.selectedIndex].text
-        svg = svg.replaceAll('#{paths.text}', course)
-
-        var table = _get('disciplines')
-        disciplines = new Map()
-        for (const row of table.rows)
-            if (row.cells.length == 2 && row.innerHTML.includes('<td>'))
-                disciplines.set(row.cells[0].innerText, row.cells[1].innerText)
-        var bracket = "<!--performance-->"
-        var prefixIndex = svg.indexOf(bracket)
-        var suffixIndex = svg.indexOf(bracket, prefixIndex + bracket.length)
-        if (prefixIndex >= 0 && suffixIndex >= 0) {
-            suffixIndex += bracket.length
-            var template = svg.slice(prefixIndex + bracket.length, suffixIndex - bracket.length).trim()
-            var content = []
-            var total = 0, count = 0
-            for (const [k, v] of disciplines) {
-                var line = template.replace('{key}', k).replace('{value}', v)
-                total += Number(v)
-                count++
-                content.push(line)
-            }
-            content = content.join('\n')
-            svg = svg.slice(0, prefixIndex) + content + svg.slice(suffixIndex)
-            if (count > 0)
-                total = Math.round(total/count)
-            if (total < 0)
-                total = 0
-            if (total > 100)
-                total = 100
-            svg = svg.replaceAll('#{performance.total}', total)
-        }
+        svg = _buildSvg(svg)
         div.innerHTML = svg
         document.body.insertBefore(div, null)
         div.scrollIntoView()
     }
-    var old = _get("idsvg")
-    if(old !== null)
-        old.remove()
     ajax.send()
 }
