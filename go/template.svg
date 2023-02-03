@@ -77,8 +77,8 @@
     <text id="course-full-title" fill="{{foreground}}" fill-opacity="0.7" font-size="24" y="54%">
       <tspan x="20%" dy="1.4em">{{...fullcourse}}</tspan>
     </text>
-    <text id="performance-marks" fill="{{foreground2}}" font-size="150">
-      <tspan x="44%" y="65%">{{performance.total}}%</tspan>
+    <text id="performance-marks" fill="{{foreground2}}" font-size="150" x="44%" y="65%">
+      {{performance.total}}%
     </text>
     <text fill="{{foreground}}" fill-opacity="0.4" font-size="14">
       <tspan x="55%" y="70%">от максимального балла</tspan>
@@ -90,8 +90,9 @@
       <tspan x="95%" text-anchor="end">{value} %</tspan>
     <!--performance-->
     </text>
-    <text fill="{{foreground}}" fill-opacity="0.7" font-size="10">
-      <tspan x="192.354" y="826.7">Для проверки подлинности сертификата напишите на ohreally@eduhund.com</tspan>
+    <text fill="{{foreground}}" fill-opacity="0.7" font-size="10"
+      x="60%" y="97%" width="77%" text-anchor="middle">
+      Для проверки подлинности сертификата напишите на ohreally@eduhund.com
     </text>
     <image id="animal" opacity="0.6" x="-10%" y="75%" width="35%" height="35%"
       preserveAspectRatio="xMaxYMin meet" href="images/{{animal}}.png"/>

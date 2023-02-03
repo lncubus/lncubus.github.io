@@ -202,9 +202,8 @@ _get('dateofdoc').valueAsDate = new Date()
  * @param {HTMLSelectElement} select
  */
 var _loadFonts = function(select, selected) {
-    const fonts = ['Arial', 'Bookman', 'Brush Script MT', 'Century Gothic', 'Copperplate Gothic Light', 'Garamond',
-    'Goudy Old Style', 'Helvetica', 'Impact', 'Ink Free', 'Inter', 'Lucida Handwriting', 'MV Boli',
-    'Papyrus', 'Segoe Script', 'Verdana']
+    const fonts = ['Arial', 'Century Gothic', 'Garamond',
+    'Helvetica', 'Impact', 'Ink Free', 'Inter', 'Segoe Script', 'Verdana']
     for (var font of fonts) {
         var option = document.createElement('option')
         option.style.fontFamily = font
