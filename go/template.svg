@@ -7,7 +7,7 @@
     }
   </style>
   <defs>
-    <image width="20%" height="8%" id="signature" href="images/signature.png" opacity="0.7" transform="rotate(-21)"/>
+    <image width="20%" height="8%" id="signature" href="images/signature{{inverted}}.png" opacity="0.7" transform="rotate(-21)"/>
     <g id="TXT" fill="{{header}}" fill-opacity="0.4">
       <path d="M-102.032 64.1364V0.5H150.809V64.1364H63.3092V291.409H-14.5317V64.1364H-102.032Z"/>
       <path d="M249.191 0.5L296.919 85.1591H299.191L347.487 0.5H435.555L348.623 145.955L438.964 291.409H348.623L299.191 205.045H296.919L247.487 291.409H157.714L246.919 145.955L160.555 0.5H249.191Z"/>
@@ -95,6 +95,6 @@
       Для проверки подлинности сертификата напишите на ohreally@eduhund.com
     </text>
     <image id="animal" opacity="0.6" x="-10%" y="75%" width="35%" height="35%"
-      preserveAspectRatio="xMaxYMin meet" href="images/{{animal}}.png"/>
+      preserveAspectRatio="xMaxYMin meet" href="images/{{animal}}{{inverted}}.png"/>
   </g>
 </svg>
