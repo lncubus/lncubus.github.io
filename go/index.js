@@ -220,23 +220,59 @@ var _processImages = async function(svg) {
     }
 }
 
-_get('svg_dl').onclick = async function() {
+const _SVG_HEAD = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
+const _DATA_HREF_HEAD = 'data:image/svg+xml;charset=utf-8,'
+
+/**
+ * @returns {SVGElement}
+ */
+const _findSvgElement = function() {
     var div = _get('idsvg')
     if (div == null || div.innerHTML == null)
         return
     var content = div.getElementsByTagName('svg')
-    if (content == null || content.length == 0)
+    if (content == null || content.length != 1)
         return
     content = content[0]
+    return content
+}
+
+const _getSvgDataURI = async function() {
+    var content = _findSvgElement()
     await _processImages(content)
-    content = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' + content.outerHTML
+    content = _SVG_HEAD + content.outerHTML
+    const uri = _DATA_HREF_HEAD + encodeURIComponent(content)
+    return uri
+}
+
+_get('svg_dl').onclick = async function() {
     var ahref = document.createElement('a')
-    ahref.href = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(content)
+    ahref.href = await _getSvgDataURI()
     ahref.download = 'certificate.svg'
     ahref.style.display = 'none'
     document.body.appendChild(ahref)
     ahref.click()
     document.body.removeChild(ahref)
+}
+
+_get('png_dl').onclick = async function() {
+    const href = await _getSvgDataURI()
+    const image = document.createElement('img')
+    image.onload = function() {
+        const canvas = document.createElement('canvas')
+        canvas.width = image.width
+        canvas.height = image.height
+        const context = canvas.getContext('2d')
+        context.drawImage(image, 0, 0)
+        const ahref = document.createElement('a')
+        ahref.href = canvas.toDataURL('image/png')
+        ahref.download = 'certificate.png'
+        ahref.style.display = 'none'
+        document.body.appendChild(ahref)
+        ahref.click()
+        document.body.removeChild(ahref)
+        }
+    image.src = href
 }
 
 _get('paths').onchange = _update_course_description
@@ -379,4 +415,5 @@ _get("submit").onclick = async function (event) {
     document.body.insertBefore(div, null)
     event.target.scrollIntoView()
     _get('svg_dl').disabled=false
+    _get('png_dl').disabled=false
 }
