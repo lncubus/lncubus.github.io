@@ -86,7 +86,7 @@
     <text id="course-full-title" fill="{{foreground}}" fill-opacity="0.7" font-size="24" y="54%">
       <tspan x="20%" dy="1.4em">{{...fullcourse}}</tspan>
     </text>
-    <text id="performance-marks" fill="{{foreground2}}" font-size="150" x="44%" y="65%">
+    <text id="performance-marks-total" fill="{{foreground2}}" font-size="150" x="44%" y="65%">
       {{performance.total}}%
     </text>
     <text fill="{{foreground}}" fill-opacity="0.4" font-size="14">
@@ -99,6 +99,7 @@
       <tspan x="95%" text-anchor="end">{value} %</tspan>
     <!--performance-->
     </text>
+    <g id="performance-marks-lines" stroke="{{foreground}}" stroke-opacity="0.5" />
     <text fill="{{foreground}}" fill-opacity="0.7" font-size="10"
       x="60%" y="97%" width="77%" text-anchor="middle">
       Для проверки подлинности сертификата напишите на ohreally@eduhund.com
