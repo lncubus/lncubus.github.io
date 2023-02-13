@@ -110,7 +110,7 @@ const _find_hyphen_position = function(str, len) {
             case next.length < 2:
                 break
             // X-AA
-            case current.endsWith('X') && !next.has(' '):
+            case current.endsWith('X') && next.charAt(1) != ' ':
             // V-VA
             case current.endsWith('V') && next.startsWith('V') &&
                 next.charAt(0) != ' ' && next.charAt(1) != ' ':
