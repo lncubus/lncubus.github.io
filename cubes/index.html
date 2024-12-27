@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <textarea id="story" name="story"></textarea>
+
+
     <script>
-      window.write(window.location.href);
+      var text = document.getElementById("story")
+      text.value = window.location.href
     </script>
   </body>
 </html>
