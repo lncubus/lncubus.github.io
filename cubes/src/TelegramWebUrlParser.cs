@@ -14,6 +14,7 @@ public class TelegramWebUrlParser
     // private readonly List<string> _errors = new List<string>();
     // public IList<string> Errors => _errors.AsReadOnly();
     
+    [Serializable]
     public class WebUserData
     {
         public string id;
@@ -26,6 +27,7 @@ public class TelegramWebUrlParser
         public string photo_url;
     }
     
+    [Serializable]
     public class WebAppData
     {
         public WebUserData user;
@@ -36,6 +38,7 @@ public class TelegramWebUrlParser
         public string hash;
     }
 
+    [Serializable]
     public class TelegramSessionData
     {
         public string tgWebAppVersion;
@@ -49,7 +52,7 @@ public class TelegramWebUrlParser
     private static readonly string[] _eq = new[] { "=" };
     private static readonly string[] _comma = new[] { "," };
     private static readonly string[] _colon = new[] { ":" };
-    
+
     public TelegramWebUrlParser()
     {
         try
